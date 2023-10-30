@@ -19,3 +19,11 @@ document.write(NS)
 var C = 20
 var D = 15
 var E = document.write(C - D)
+
+
+//Trying out Blur event
+
+function blurEvent() {
+    let x = document.getElementById("funcname");
+    x.value = x.value.toLowerCase();
+}
