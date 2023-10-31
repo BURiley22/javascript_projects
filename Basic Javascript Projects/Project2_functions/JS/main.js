@@ -8,6 +8,6 @@ function myFunction() {
 //Concatenate
 function myFunction2() {
     var C = "How will this ";
-    sentence += "out compared to my last attempt?";
-    document.getElementById("Concatenate").innerHTML = C + sentence;
+    C += "out compared to my last attempt?";
+    document.getElementById("Concatenate").innerHTML = C;
 }
