@@ -52,7 +52,7 @@ function Player(Team, Position, Age, Country) {
     this.Player_Age = Age;
     this.Player_Country = Country;
 }
-var Nunez = new Player("Liverpool FC", "CF", 24, double);
+var Nunez = new Player("Liverpool FC", "CF", 24, "Uruguay");
 function playFunction() {
     document.getElementById("resKeyword").innerHTML =
     "One player for " + Nunez.Player_Team + " that caught our eye is Darwin Nunez."
