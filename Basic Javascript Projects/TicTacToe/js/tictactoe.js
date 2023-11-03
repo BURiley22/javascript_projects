@@ -4,7 +4,7 @@ let activePlayer = 'X';
 let selectedSquares = [];
 
 //This function is for placing an x or o in a square.
-function placeXOrO(squareNumber) {
+function placeXOrO(squareNumber) { 
     //This condition ensures a square hasn't been selected already.
     //The .some() method is used to check each element of the selectSquare array
     //to see if it contains the square number clicked on.
@@ -46,6 +46,27 @@ function placeXOrO(squareNumber) {
         //Returning true is needed for our computersTurn() function to work.
         return true;
     }
+    //This function results in a random square being selected by the computer.
+    function computersTurn() {
+        //This boolean is needed for our while loop.
+        let success = false;
+        //This variable stores a random number 0-8.
+        let pickASquare;
+        //This conditoin allows our while loop to keep trying if a square is selected already.
+        while (!success) {
+            //A random number between 0 and 8 is selected.
+            pickASquare = String(Math.floor(Math.random() * 9));
+            //If the random number evaluated returns true, the square hasn't been selected yet.
+            if (placeXOrO(pickASquare)) {
+                //This line calls the function.
+                placeXOrO(pickASquare);
+                //This changes our boolean and ends the loop.
+                success = true;
+            };
+        }
+    }
+}
+
     //This function parses the selectedSquares array to search for win conditions.
     //drawline() function is alled to draw a line on the screen if the condition is met.
     function checkWinConditions() {
@@ -161,15 +182,18 @@ function placeXOrO(squareNumber) {
                 if (x < x2) { x += 10; }
                 //This condition addes 10 to the previous end y endpoint.
                 if (y < y2) { y += 10; }
-                //This condition is similar to the one avoce.
+                //This condition is similar to the one above.
                 //This is necessary for the 6, 4, 2, win conditions.
-                if(x >= x2 && y >= y2) {
+                if(x >= x2 && y >= y2) {cancelAnimationFrame(animationLoop); }
+            }
+            //This condition is similar to the one above.
+            //This is necessary for the 6, 4, 2 win condition.
+            if (x1 <= x2 && y1 >= y2) {
                     if (x < x2) { x += 10; }
                     if (y > y2) { y -= 10; }
                     if (x >= x2 && y <= y2) { cancelAnimationFrame(animationLoop); }
-                }
-                 
             }
+                 
         }
         //This function clears our canvas after ou rwin line is drawn.
         function clear() {
@@ -188,8 +212,8 @@ function placeXOrO(squareNumber) {
         animateLineDrawing();
         //This line waits 1 second.  Then, clears canvas, resets game, an allows clicking again.
         setTimeout(function () { clear(); resetGame(); }, 1000);
-    
     }
+    
 
     //This function resets the game in the event of a tie or a win.
     function resetGame() {
@@ -203,24 +227,3 @@ function placeXOrO(squareNumber) {
         //This resets our array so it is empty and we can start over.
         selectedSquares = [];
     }
-
-    //This function results in a random square being selected by the computer.
-    function computersTurn() {
-        //This boolean is needed for our while loop.
-        let success = false;
-        //This variable stores a random number 0-8.
-        let pickASquare;
-        //This conditoin allows our while loop to keep trying if a square is selected already.
-        while (!success) {
-            //A random number between 0 and 8 is selected.
-            pickASquare = String(Math.floor(Math.random() * 9));
-            //If the random number evaluated returns true, the square hasn't been selected yet.
-            if (placeXOrO(pickASquare)) {
-                //This line calls the function.
-                placeXOrO(pickASquare);
-                //This changes our boolean and ends the loop.
-                success = true;
-            };
-        }
-    }
-}
